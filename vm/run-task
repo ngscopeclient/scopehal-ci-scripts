@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: run-task script.sh"
+	exit 1;
+fi
+
+# VM configuration
+VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
+
+# Copy the job to the VM then run it
+PAYLOAD=$1
+scp $PAYLOAD $VM_HOSTNAME:~/payload.sh
+ssh $VM_HOSTNAME ~/payload.sh
