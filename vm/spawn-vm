@@ -4,10 +4,22 @@ if [ "$SLURM_NTASKS" -ne 1 ]; then
 	exit 1;
 fi
 
+# VM configuration
 NODE=$SLURM_JOB_NODELIST
 VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 
-echo "uuid $VM_UUID"
-echo "hostname $VM_HOSTNAME"
+# Spawn the worker VM
+echo "Starting worker...";
+xo-cli vm.start id=$VM_UUID > /dev/null
 
+# Wait for the VM to boot
+echo "Waiting for worker to boot...";
+while : ; do
+	echo "SSH poll...";
+	if ssh -o ConnectTimeout=5 $VM_HOSTNAME hostname > /dev/null 2> /dev/null
+	then
+		break
+	fi
+done
+echo "Worker is up"
