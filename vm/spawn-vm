@@ -4,9 +4,6 @@ if [ "$SLURM_NTASKS" -ne 1 ]; then
 	exit 1;
 fi
 
-# make sure helpers are available
-export PATH=$PATH:/home/ci/scopehal-ci-scripts/vm
-
 # VM configuration
 NODE=$SLURM_JOB_NODELIST
 VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
