@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# slurm prolog script has no search path by default
+PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
+
 if [ "$SLURM_NTASKS" -ne 1 ]; then
 	echo "Only single-node jobs are supported"
 	exit 1;
