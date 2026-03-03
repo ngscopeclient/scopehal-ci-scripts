@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ "$#" -ne 1 ]; then
+	echo "Usage: get-snapshot-uuid nodename"
+	exit 1;
+fi
+
+case "$1" in
+	"debian-stable")
+		echo "34cc9ccc-65ea-9878-5dc9-5cec14912634";;
+
+	*)
+		echo "Invalid node name";
+		exit 1;;
+esac

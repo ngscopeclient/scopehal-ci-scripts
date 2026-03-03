@@ -1,0 +1,13 @@
+#!/bin/bash
+if [ "$SLURM_NTASKS" -ne 1 ]; then
+	echo "Only single-node jobs are supported"
+	exit 1;
+fi
+
+NODE=$SLURM_JOB_NODELIST
+VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
+
+echo "uuid $VM_UUID"
+echo "hostname $VM_HOSTNAME"
+

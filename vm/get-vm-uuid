@@ -1,0 +1,14 @@
+#!/bin/bash
+if [ "$#" -ne 1 ]; then
+	echo "Usage: get-vm-uuid nodename"
+	exit 1;
+fi
+
+case "$1" in
+	"debian-stable")
+		echo "0eb7e74a-c07d-aa43-75b9-d6c908a32007";;
+
+	*)
+		echo "Invalid node name";
+		exit 1;;
+esac
