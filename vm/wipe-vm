@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# slurm epilog script has no search path by default
+#seems we cannot print anything from epilog, need to redirect to a file
+PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
+if [ "$SLURM_NTASKS" -ne 1 ]; then
+	echo "print Only single-node jobs are supported"
+	exit 1;
+fi
+
+# VM configuration
+NODE=$SLURM_JOB_NODELIST
+VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+SNAPSHOT_UUID=`get-snapshot-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+
+# Shut it down and wipe it
+echo "Shutting down runner...";
+xo-cli vm.stop id=$VM_UUID > /dev/null
+echo "Wiping runner...";
+xo-cli vm.revert snapshot=$SNAPSHOT_UUID > /dev/null
