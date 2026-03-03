@@ -4,22 +4,25 @@ if [ "$SLURM_NTASKS" -ne 1 ]; then
 	exit 1;
 fi
 
+# make sure helpers are available
+export PATH=$PATH:/home/ci/scopehal-ci-scripts/vm
+
 # VM configuration
 NODE=$SLURM_JOB_NODELIST
 VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 
 # Spawn the worker VM
-echo "Starting worker...";
+echo "Starting worker node $NODE...";
 xo-cli vm.start id=$VM_UUID > /dev/null
 
 # Wait for the VM to boot
-echo "Waiting for worker to boot...";
+echo "Waiting for worker $NODE to boot...";
 while : ; do
-	echo "SSH poll...";
+	#echo "SSH poll...";
 	if ssh -o ConnectTimeout=5 $VM_HOSTNAME hostname > /dev/null 2> /dev/null
 	then
 		break
 	fi
 done
-echo "Worker is up"
+echo "$VM_HOSTNAME is up"
