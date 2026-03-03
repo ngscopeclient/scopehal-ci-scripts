@@ -6,7 +6,7 @@ fi
 
 case "$1" in
 	"debian-stable")
-		echo "34cc9ccc-65ea-9878-5dc9-5cec14912634";;
+		echo "a1ce9ba9-82fb-7b2e-376e-74f63b9f24ad";;
 
 	*)
 		echo "Invalid node name";
