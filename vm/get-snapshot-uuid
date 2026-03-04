@@ -11,6 +11,9 @@ case "$1" in
 	"debian-oldstable")
 		echo "95112ce4-b713-edcc-186e-4bda92e44b30";;
 
+	"ubuntu-oldlts")
+		echo "dad5f403-fbbb-8da8-b7f4-654745f19483";;
+
 	*)
 		echo "Invalid node name";
 		exit 1;;
