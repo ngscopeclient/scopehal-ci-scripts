@@ -3,10 +3,6 @@
 # slurm epilog script has no search path by default
 #seems we cannot print anything from epilog, need to redirect to a file
 PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
-if [ "$SLURM_NTASKS" -ne 1 ]; then
-	echo "print Only single-node jobs are supported"
-	exit 1;
-fi
 
 # VM configuration
 NODE=$SLURM_JOB_NODELIST
