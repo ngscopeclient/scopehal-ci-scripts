@@ -8,6 +8,9 @@ case "$1" in
 	"debian-stable")
 		echo "a1ce9ba9-82fb-7b2e-376e-74f63b9f24ad";;
 
+	"debian-oldstable")
+		echo "d59d16f0-3b8b-4cc1-1dba-db525125b6f9";;
+
 	*)
 		echo "Invalid node name";
 		exit 1;;
