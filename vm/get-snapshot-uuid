@@ -9,7 +9,7 @@ case "$1" in
 		echo "a1ce9ba9-82fb-7b2e-376e-74f63b9f24ad";;
 
 	"debian-oldstable")
-		echo "d59d16f0-3b8b-4cc1-1dba-db525125b6f9";;
+		echo "07565448-f0aa-5746-0b47-75f6733a9fa7";;
 
 	*)
 		echo "Invalid node name";
