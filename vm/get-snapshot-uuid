@@ -6,10 +6,10 @@ fi
 
 case "$1" in
 	"debian-stable")
-		echo "48b9bc37-3c45-cf76-3268-0bdcbbb5101f";;
+		echo "75912575-e8c8-3bf5-2934-e0f6a2a36b67";;
 
 	"debian-oldstable")
-		echo "61eb6f45-9d55-ab86-9e24-f6fe2314fd77";;
+		echo "26014df7-612e-7ed4-4631-85101e458f2c";;
 
 	"ubuntu-oldlts")
 		echo "26925a3b-d6c5-e47b-dc89-ddaff5674b65";;
