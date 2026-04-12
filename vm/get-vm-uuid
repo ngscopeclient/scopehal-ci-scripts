@@ -4,15 +4,16 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
+# updated 2026-04-11 for new UUIDs
 case "$1" in
 	"debian-stable")
-		echo "0eb7e74a-c07d-aa43-75b9-d6c908a32007";;
+		echo "9b78594a-b9d3-09cf-6e28-4d9ec6d72077";;
 
 	"debian-oldstable")
-		echo "58185eec-5c2c-2c1b-fcab-d58cadfc22ca";;
+		echo "ca3722cc-8fa0-355c-c6c9-b8ef8b7f4d0f";;
 
 	"ubuntu-oldlts")
-		echo "ba751860-26c1-f801-9ab4-5b8b76bca454";;
+		echo "81d8224d-c35a-ec9c-5a7f-34dd4c40867f";;
 
 	*)
 		echo "Invalid node name";

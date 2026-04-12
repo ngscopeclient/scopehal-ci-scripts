@@ -6,13 +6,13 @@ fi
 
 case "$1" in
 	"debian-stable")
-		echo "b6a6da95-ebd7-da22-fbb5-b9d0acf78a56";;
+		echo "accf1e45-1a3e-9fa5-a8b4-2c6cffdc377f";;
 
 	"debian-oldstable")
-		echo "a1c95537-23d7-8188-ded9-fc7c2bde81c6";;
+		echo "61eb6f45-9d55-ab86-9e24-f6fe2314fd77";;
 
 	"ubuntu-oldlts")
-		echo "bc3bda9e-903e-0122-fddb-86418f0e59e2";;
+		echo "26925a3b-d6c5-e47b-dc89-ddaff5674b65";;
 
 	*)
 		echo "Invalid node name";
