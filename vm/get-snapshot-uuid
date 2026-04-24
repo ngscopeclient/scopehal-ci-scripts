@@ -6,7 +6,7 @@ fi
 
 case "$1" in
 	"debian-stable")
-		echo "75912575-e8c8-3bf5-2934-e0f6a2a36b67";;
+		echo "974deb12-c5b8-4bf9-e8d3-3ec89862a036";;
 
 	"debian-oldstable")
 		echo "26014df7-612e-7ed4-4631-85101e458f2c";;
