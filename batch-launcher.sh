@@ -15,6 +15,13 @@ sbatch -o "run-logs/slurm-%j.out" \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
 
 # Build and run tests with no GPU
+# These request the "nogpu" license so we can manage oversubscription
 sbatch -o "run-logs/slurm-%j.out" \
+	-L nogpu:1 \
 	-p ubuntu-lts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
+
+sbatch -o "run-logs/slurm-%j.out" \
+	-L nogpu:1 \
+	-p win11 \
+	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh

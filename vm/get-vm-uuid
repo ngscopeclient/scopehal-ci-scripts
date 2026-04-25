@@ -4,7 +4,7 @@ if [ "$#" -ne 1 ]; then
 	exit 1;
 fi
 
-# updated 2026-04-11 for new UUIDs
+# updated 2026-04-25 for new UUIDs
 case "$1" in
 	"debian-stable")
 		echo "9b78594a-b9d3-09cf-6e28-4d9ec6d72077";;
@@ -17,6 +17,9 @@ case "$1" in
 
 	"ubuntu-lts")
 		echo "06ffa976-5cef-894e-c4ab-7774080f2f67";;
+
+	"win11")
+		echo "a7bf431e-0eef-dff2-0b57-1bf9e5992e90";;
 
 	*)
 		echo "Invalid node name";
