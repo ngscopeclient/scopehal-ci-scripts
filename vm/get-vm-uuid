@@ -15,6 +15,9 @@ case "$1" in
 	"ubuntu-oldlts")
 		echo "81d8224d-c35a-ec9c-5a7f-34dd4c40867f";;
 
+	"ubuntu-lts")
+		echo "06ffa976-5cef-894e-c4ab-7774080f2f67";;
+
 	*)
 		echo "Invalid node name";
 		exit 1;;
