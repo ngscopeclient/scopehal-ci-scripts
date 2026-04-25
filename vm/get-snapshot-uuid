@@ -18,7 +18,7 @@ case "$1" in
 		echo "33d6b03a-e2db-07f7-8a46-4ed7b15a4766";;
 
 	"win11")
-		echo "6d64b0b3-5575-b018-74e2-6d5cd6ed91ac";;
+		echo "4bf60141-5314-3fab-c2ea-ef256ceb9071";;
 
 	*)
 		echo "Invalid node name";
