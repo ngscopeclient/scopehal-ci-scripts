@@ -15,7 +15,7 @@ case "$1" in
 		echo "26014df7-612e-7ed4-4631-85101e458f2c";;
 
 	"fedora")
-		echo "6436798b-4a9b-7a93-4e61-e6fd4868298e";;
+		echo "8aa2cace-63b2-acc4-6038-b31021ad806e";;
 
 	"ubuntu-oldlts")
 		echo "26925a3b-d6c5-e47b-dc89-ddaff5674b65";;
