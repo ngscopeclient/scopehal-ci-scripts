@@ -16,6 +16,9 @@ case "$1" in
 	"debian-oldstable")
 		echo "ca3722cc-8fa0-355c-c6c9-b8ef8b7f4d0f";;
 
+	"fedora")
+		echo "7f2bbfa4-fbb7-998d-03c4-fa8c9bca17d9";;
+
 	"ubuntu-oldlts")
 		echo "81d8224d-c35a-ec9c-5a7f-34dd4c40867f";;
 
