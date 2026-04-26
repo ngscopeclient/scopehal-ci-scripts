@@ -9,9 +9,8 @@ fi
 VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
 
 # Update msys2 on the VM first, this may kill the shell so run it twice to make sure we got everything
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 echo "--- Deploy update script ---"
-scp $SCRIPT_DIR/msys-update.sh $VM_HOSTNAME:c:\\users\\ci\\update.sh
+scp /home/ci/scopehal-ci-scripts/vm/msys-update.sh $VM_HOSTNAME:c:\\users\\ci\\update.sh
 echo "--- Update msys2, first pass ---"
 ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c ./update.sh
 echo "--- Update msys2, second pass ---"
