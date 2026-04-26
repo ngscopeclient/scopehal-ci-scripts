@@ -8,9 +8,11 @@ fi
 # VM configuration
 VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
 
-# Update msys2 on the VM first, this may kill the shell
-ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c pacman -Syyuu
-ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c pacman -Suu
+# Update msys2 on the VM first, this may kill the shell so run it twice to make sure we got everything
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+scp $SCRIPT_DIR/msys-update.sh $VM_HOSTNAME:c:\\users\\ci\\payload.sh
+ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c ./payload.sh
+ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c ./payload.sh
 
 # Copy the job to the VM then run it
 PAYLOAD=$1
