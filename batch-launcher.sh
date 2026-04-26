@@ -29,3 +29,8 @@ sbatch -o "run-logs/slurm-%j.out" \
 	-L nogpu:1 \
 	-p ubuntu-lts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
+
+sbatch -o "run-logs/slurm-%j.out" \
+	-L nogpu:1 \
+	-p fedora \
+	run-task scopehal-ci-scripts/ci-jobs/job-fedora.sh
