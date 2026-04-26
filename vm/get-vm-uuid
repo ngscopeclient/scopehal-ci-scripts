@@ -6,6 +6,10 @@ fi
 
 # updated 2026-04-25 for new UUIDs
 case "$1" in
+
+	"arch")
+		echo "a41ad7bb-8e67-ff50-dedf-c86a10a569c9";;
+
 	"debian-stable")
 		echo "9b78594a-b9d3-09cf-6e28-4d9ec6d72077";;
 
