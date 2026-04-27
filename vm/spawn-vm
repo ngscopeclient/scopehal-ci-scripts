@@ -17,15 +17,12 @@ if [ "$NODE" == "macos" ]; then
 
 	echo "print Starting worker node $NODE on mac mini...";
 
-	# This is ugly because the mac scripting interface has to run in an interactive session
-	# or a screen session launched from it.
-	# As a result, this will only work if you have logged into $MAC_HOST via local console or VNC first,
-	# and started a screen session called "utmcli"
+	# NOTE: need to fix permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
 	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
 	TEMPLATE_NAME="ci-macos baseline"
 	RUNNER_NAME="ci-macos runner"
-	ssh azonenberg@$MAC_HOST screen -S utmcli -X stuff "utmctl clone \"$TEMPLATE_NAME\" --name \"$RUNNER_NAME\""`echo -ne '\015'`
-	ssh azonenberg@$MAC_HOST screen -S utmcli -X stuff "utmctl start \"$RUNNER_NAME\""`echo -ne '\015'`
+	ssh azonenberg@$MAC_HOST utmctl clone "$TEMPLATE_NAME" --name "$RUNNER_NAME"
+	ssh azonenberg@$MAC_HOST utmctl start "$RUNNER_NAME"
 
 # Default case: assume it's an xcp-ng VM
 else
