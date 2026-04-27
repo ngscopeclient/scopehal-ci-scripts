@@ -24,8 +24,8 @@ if [ "$NODE" == "macos" ]; then
 	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
 	TEMPLATE_NAME="ci-macos baseline"
 	RUNNER_NAME="ci-macos runner"
-	ssh $MAC_HOST screen -S utmcli -X stuff "utmctl clone \"$TEMPLATE_NAME\" --name \"$RUNNER_NAME\""`echo -ne '\015'`
-	ssh $MAC_HOST screen -S utmcli -X stuff "utmctl start \"$RUNNER_NAME\""`echo -ne '\015'`
+	ssh azonenberg@$MAC_HOST screen -S utmcli -X stuff "utmctl clone \"$TEMPLATE_NAME\" --name \"$RUNNER_NAME\""`echo -ne '\015'`
+	ssh azonenberg@$MAC_HOST screen -S utmcli -X stuff "utmctl start \"$RUNNER_NAME\""`echo -ne '\015'`
 
 # Default case: assume it's an xcp-ng VM
 else
