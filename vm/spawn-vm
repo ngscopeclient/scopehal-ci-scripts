@@ -12,15 +12,18 @@ fi
 NODE=$SLURM_JOB_NODELIST
 VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 
-#Special case the MacOS VM
+#Special case the MacOS VM (and anything else that might later run on it)
 if [ "$NODE" == "macos" ]; then
 
 	echo "print Starting worker node $NODE on mac mini...";
 
-	# NOTE: need to fix permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
-	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
+	# Set this as needed for $NODE
 	TEMPLATE_NAME="ci-macos-baseline"
 	RUNNER_NAME="ci-macos-runner"
+
+	# NOTE: need to add app control permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
+	# or this won't work
+	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
 	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl clone $TEMPLATE_NAME --name $RUNNER_NAME
 	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl start $RUNNER_NAME
 

@@ -6,11 +6,20 @@ PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
 
 # VM configuration
 NODE=$SLURM_JOB_NODELIST
-VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
-SNAPSHOT_UUID=`get-snapshot-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 
-# Shut it down and wipe it
-echo "Shutting down runner...";
-xo-cli vm.stop id=$VM_UUID > /dev/null
-echo "Wiping runner...";
-xo-cli vm.revert snapshot=$SNAPSHOT_UUID > /dev/null
+#Special case the MacOS VM
+if [ "$NODE" == "macos" ]; then
+
+	echo "FIXME shutdown of macos vm not implemented yet"
+
+# Default case: assume it's an xcp-ng VM
+else
+	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+	SNAPSHOT_UUID=`get-snapshot-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+
+	# Shut it down and wipe it
+	echo "Shutting down runner...";
+	xo-cli vm.stop id=$VM_UUID > /dev/null
+	echo "Wiping runner...";
+	xo-cli vm.revert snapshot=$SNAPSHOT_UUID > /dev/null
+fi
