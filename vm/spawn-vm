@@ -15,7 +15,7 @@ VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 #Special case the MacOS VM
 if [ "$NODE" == "macos" ]; then
 
-	echo "print Starting worker node $NODE...";
+	echo "print Starting worker node $NODE on mac mini...";
 
 	# This is ugly because the mac scripting interface has to run in an interactive session
 	# or a screen session launched from it.
