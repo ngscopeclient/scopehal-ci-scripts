@@ -41,4 +41,4 @@ sbatch -o "run-logs/slurm-%j.out" \
 sbatch -o "run-logs/slurm-%j.out" \
 	-L macmini:1 \
 	-p macos\
-	run-task scopehal-ci-scripts/ci-jobs/job-macos.sh
+	run-task-macos scopehal-ci-scripts/ci-jobs/job-macos.sh
