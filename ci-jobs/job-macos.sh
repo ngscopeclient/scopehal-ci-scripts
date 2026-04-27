@@ -1,4 +1,5 @@
 #!/bin/bash
+cd /Users/ci/Documents
 git clone --recursive https://github.com/ngscopeclient/scopehal-apps
 cd scopehal-apps
 ./test-scripts/test-driver-macos.sh
