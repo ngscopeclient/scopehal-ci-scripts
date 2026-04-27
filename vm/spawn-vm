@@ -10,12 +10,31 @@ fi
 
 # VM configuration
 NODE=$SLURM_JOB_NODELIST
-VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 
-# Spawn the worker VM
-echo "print Starting worker node $NODE...";
-xo-cli vm.start id=$VM_UUID > /dev/null
+#Special case the MacOS VM
+if [ "$NODE" == "macos" ]; then
+
+	echo "print Starting worker node $NODE...";
+
+	# This is ugly because the mac scripting interface has to run in an interactive session
+	# or a screen session launched from it.
+	# As a result, this will only work if you have logged into $MAC_HOST via local console or VNC first,
+	# and started a screen session called "utmcli"
+	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
+	TEMPLATE_NAME="ci-macos baseline"
+	RUNNER_NAME="ci-macos runner"
+	ssh $MAC_HOST screen -S utmcli -X stuff "utmctl clone \"$TEMPLATE_NAME\" --name \"$RUNNER_NAME\""`echo -ne '\015'`
+	ssh $MAC_HOST screen -S utmcli -X stuff "utmctl start \"$RUNNER_NAME\""`echo -ne '\015'`
+
+# Default case: assume it's an xcp-ng VM
+else
+	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+
+	# Spawn the worker VM
+	echo "print Starting worker node $NODE...";
+	xo-cli vm.start id=$VM_UUID > /dev/null
+fi
 
 # Wait for the VM to boot
 echo "print Waiting for worker $NODE to boot...";
