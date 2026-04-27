@@ -10,7 +10,16 @@ NODE=$SLURM_JOB_NODELIST
 #Special case the MacOS VM
 if [ "$NODE" == "macos" ]; then
 
-	echo "FIXME shutdown of macos vm not implemented yet"
+	# Set this as needed for $NODE
+	RUNNER_NAME="ci-macos-runner"
+
+	# NOTE: need to add app control permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
+	# or this won't work
+	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
+	echo "Shutting down runner...";
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl stop $RUNNER_NAME
+	echo "Wiping runner...";
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl delete $RUNNER_NAME
 
 # Default case: assume it's an xcp-ng VM
 else
