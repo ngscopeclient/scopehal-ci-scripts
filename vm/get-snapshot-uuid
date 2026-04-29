@@ -6,25 +6,25 @@ fi
 
 case "$1" in
 	"arch")
-		echo "dbaf6901-94e7-749d-9809-2abad1c5d7c2";;
+		echo "25b862f3-a2fe-7017-be09-1b72aab1fcb0";;
 
 	"debian-stable")
-		echo "974deb12-c5b8-4bf9-e8d3-3ec89862a036";;
+		echo "bc71f5f8-b6e4-55dc-1f42-6fab85673e1b";;
 
 	"debian-oldstable")
-		echo "26014df7-612e-7ed4-4631-85101e458f2c";;
+		echo "64adbc10-f666-76c2-5ebd-3ec8f6d7b61f";;
 
 	"fedora")
-		echo "8aa2cace-63b2-acc4-6038-b31021ad806e";;
-
-	"ubuntu-oldlts")
-		echo "26925a3b-d6c5-e47b-dc89-ddaff5674b65";;
+		echo "178af0f9-f7d6-dd8a-e03e-ab9d0191e13d";;
 
 	"ubuntu-lts")
-		echo "33d6b03a-e2db-07f7-8a46-4ed7b15a4766";;
+		echo "346a7ae8-44a7-8224-952d-7c98eab4997e";;
+
+	"ubuntu-oldlts")
+		echo "3a52004b-6592-1201-e7a6-fe0fa562a4c6";;
 
 	"win11")
-		echo "0e9ca93c-5bee-8147-bfcd-afedba60420d";;
+		echo "eb224fa0-eed4-72c2-01d4-f8005bf9388f";;
 
 	*)
 		echo "Invalid node name";
