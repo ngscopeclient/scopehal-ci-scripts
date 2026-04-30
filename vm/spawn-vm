@@ -45,7 +45,7 @@ if [ "$NODE" == "arch" ]; then
 
 	# Patch it
 	echo "print Installing package updates on $NODE...";
-	ssh $VM_HOSTNAME pacman -Syu --noconfirm --needed
+	ssh $VM_HOSTNAME sudo pacman -Syu --noconfirm --needed
 
 	# Reboot it
 	echo "print Shutting down $node..."
