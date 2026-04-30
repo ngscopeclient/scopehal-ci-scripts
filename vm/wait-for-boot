@@ -1,0 +1,13 @@
+#!/bin/bash
+NODE=$1
+VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
+
+echo "print Waiting for worker $NODE to boot...";
+while : ; do
+	#echo "SSH poll...";
+	if ssh -o ConnectTimeout=5 $VM_HOSTNAME hostname > /dev/null 2> /dev/null
+	then
+		break
+	fi
+done
+echo "print $VM_HOSTNAME is up"

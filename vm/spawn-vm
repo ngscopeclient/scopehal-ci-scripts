@@ -37,12 +37,24 @@ else
 fi
 
 # Wait for the VM to boot
-echo "print Waiting for worker $NODE to boot...";
-while : ; do
-	#echo "SSH poll...";
-	if ssh -o ConnectTimeout=5 $VM_HOSTNAME hostname > /dev/null 2> /dev/null
-	then
-		break
-	fi
-done
-echo "print $VM_HOSTNAME is up"
+wait-for-boot $NODE
+
+# If this is the Arch runner, run an update and reboot cycle before doing anything else
+# Otherwise vulkan seems to have problems sometimes with libraries not matching the kernel driver or something
+if [ "$NODE" == "arch" ]; then
+
+	# Patch it
+	echo "print Installing package updates on $NODE...";
+	ssh $VM_HOSTNAME pacman -Syu --noconfirm --needed
+
+	# Reboot it
+	echo "print Shutting down $node..."
+	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
+	xo-cli vm.stop id=$VM_UUID > /dev/null
+
+	echo "print Restarting $NODE...";
+	xo-cli vm.start id=$VM_UUID > /dev/null
+
+	# Wait for the VM to boot for the second time
+	wait-for-boot $NODE
+fi
