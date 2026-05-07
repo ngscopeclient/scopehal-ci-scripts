@@ -17,8 +17,11 @@ case "$1" in
 	"fedora")
 		echo "fa3fef01-8ccf-b4b4-addd-2eb984167e8c";;
 
-	"ubuntu-lts")
-		echo "d56036b4-bd3f-2f1d-4165-58602c68d995";;
+	"ubuntu-lts-1")
+		echo "ba9ecb2a-749a-ac2a-8154-ab26397bd2ed";;
+
+	"ubuntu-lts-2")
+		echo "0d7ee807-6725-bfc4-5177-4d2e956e63b2";;
 
 	"ubuntu-oldlts")
 		echo "fbd389bb-c1c6-de29-5423-b5c3ba34efdd";;

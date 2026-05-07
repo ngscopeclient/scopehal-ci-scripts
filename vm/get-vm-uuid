@@ -22,8 +22,11 @@ case "$1" in
 	"ubuntu-oldlts")
 		echo "81d8224d-c35a-ec9c-5a7f-34dd4c40867f";;
 
-	"ubuntu-lts")
+	"ubuntu-lts-1")
 		echo "06ffa976-5cef-894e-c4ab-7774080f2f67";;
+
+	"ubuntu-lts-2")
+		echo "b2cfe297-5571-2b79-30bc-bf85af9b5709";;
 
 	"win11")
 		echo "a7bf431e-0eef-dff2-0b57-1bf9e5992e90";;

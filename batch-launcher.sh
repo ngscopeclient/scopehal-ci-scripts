@@ -7,50 +7,50 @@
 # without any need to wait for other jobs in the block
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nvidia1630:1,nvidia1630_18:1 \
+	-L nvidia1630_18:1,sanquentin:1 \
 	-p win11 \
 	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nvidia1630:1,nvidia1630_51:1 \
+	-L nvidia1630_51:1,sanquentin:1 \
 	-p debian-oldstable \
 	run-task scopehal-ci-scripts/ci-jobs/job-debian.sh
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nvidia1630:1,nvidia1630_8a:1 \
+	-L nvidia1630_8a:1,sanquentin:1 \
 	-p ubuntu-oldlts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
 
 ##
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nvidia1630:1,nvidia1630_51:1 \
+	-L nvidia1630_51:1,sanquentin:1 \
 	-p arch \
 	run-task scopehal-ci-scripts/ci-jobs/job-arch.sh
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nvidia1630:1,nvidia1630_8a:1 \
+	-L nvidia1630_8a:1,sanquentin:1 \
 	-p debian-stable \
 	run-task scopehal-ci-scripts/ci-jobs/job-debian.sh
 
 ########################################################################################################################
 # Build and run tests with no GPU
-# These request the "nogpu" license so we can manage oversubscription of
+# These still request the "sanquentin" license so we can manage oversubscription of vCPUs on the server
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nogpu:1 \
+	-L sanquentin:1 \
 	-p ubuntu-lts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nogpu:1 \
+	-L sanquentin:1 \
 	-p ubuntu-lts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu-sanitizer.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nogpu:1 \
+	-L sanquentin:1 \
 	-p ubuntu-lts \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu-analyze.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
-	-L nogpu:1 \
+	-L sanquentin:1 \
 	-p fedora \
 	run-task scopehal-ci-scripts/ci-jobs/job-fedora.sh
 
