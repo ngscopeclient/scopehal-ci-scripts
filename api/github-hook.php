@@ -50,8 +50,8 @@ $after = $json['after'];
 //Sanitize them to make sure there's nothing nasty.
 $branch = str_replace('refs/heads/', '', $ref);
 
-//Make sure branch name is purely alphanumeric
-if(!preg_match('#^[a-zA-Z0-9\-]+$#', $branch))
+//Make sure branch name is purely alphanumeric and doesn't start with a dash
+if(!preg_match('#^[a-zA-Z0-9][a-zA-Z0-9\-]*$', $branch))
 {
 	fwrite($log, "Malformed branch name $branch\n");
 	fwrite($log, $rawbody);
