@@ -9,14 +9,17 @@
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_18:1,sanquentin:1 \
 	-p win11 \
+	--time=45 \
 	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_51:1,sanquentin:1 \
 	-p debian-oldstable \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-debian.sh
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_8a:1,sanquentin:1 \
 	-p ubuntu-oldlts \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
 
 ##
@@ -24,10 +27,12 @@ sbatch -o "run-logs/slurm-%j.out" \
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_51:1,sanquentin:1 \
 	-p arch \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-arch.sh
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_8a:1,sanquentin:1 \
 	-p debian-stable \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-debian.sh
 
 ########################################################################################################################
@@ -37,21 +42,25 @@ sbatch -o "run-logs/slurm-%j.out" \
 sbatch -o "run-logs/slurm-%j.out" \
 	-L sanquentin:1 \
 	-p ubuntu-lts \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
 	-L sanquentin:1 \
 	-p ubuntu-lts \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu-sanitizer.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
 	-L sanquentin:1 \
 	-p ubuntu-lts \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-ubuntu-analyze.sh
 
 sbatch -o "run-logs/slurm-%j.out" \
 	-L sanquentin:1 \
 	-p fedora \
+	--time=45 \
 	run-task scopehal-ci-scripts/ci-jobs/job-fedora.sh
 
 ########################################################################################################################
@@ -62,4 +71,5 @@ sbatch -o "run-logs/slurm-%j.out" \
 sbatch -o "run-logs/slurm-%j.out" \
 	-L macmini:1 \
 	-p macos\
+	--time=45 \
 	run-task-macos scopehal-ci-scripts/ci-jobs/job-macos.sh
