@@ -12,8 +12,13 @@ fi
 NODE=$SLURM_JOB_NODELIST
 VM_HOSTNAME=$NODE.cidmz.poulsbo.antikernel.net
 
+#No VM stuff needed at all for postprocessing, that runs on the host
+if [ "$NODE" == "postprocess" ]; then
+
+exit;
+
 #Special case the MacOS VM (and anything else that might later run on it)
-if [ "$NODE" == "macos" ]; then
+elif [ "$NODE" == "macos" ]; then
 
 	echo "print Starting worker node $NODE on mac mini...";
 
