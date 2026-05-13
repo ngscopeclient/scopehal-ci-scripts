@@ -5,6 +5,10 @@
 cd /home/ci
 export PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
 
+# We are probably not a login shell (i.e. not executing .bashrc),
+# so we need to add the internal root CA to the trusted list
+export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/antikernel-root-2026.crt
+
 ########################################################################################################################
 # Build and run tests using GPUs
 # Submits are grouped in blocks of up to 3, one per GPU, for clarity but are scheduled by SLURM
