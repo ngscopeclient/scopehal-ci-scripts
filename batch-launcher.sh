@@ -33,7 +33,7 @@ JOB6=`sbatch-wrapper.sh -L sanquentin:1 -p fedora run-task job-fedora.sh`
 
 # Sanitizer and analyzer jobs don't upload artifacts
 # So we don't need to save the job IDs or delay postprocessing
-sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task /job-ubuntu-sanitizer.sh 2>&1
+sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-sanitizer.sh 2>&1
 sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2>&1
 
 ########################################################################################################################
