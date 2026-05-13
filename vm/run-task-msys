@@ -17,7 +17,7 @@ echo "--- Update msys2, second pass ---"
 ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c ./update.sh
 
 # Copy the job to the VM then run it
-PAYLOAD=$1
+PAYLOAD=scopehal-ci-scripts/ci-jobs/$1
 echo "--- Deploy test script ---"
 scp $PAYLOAD $VM_HOSTNAME:c:\\users\\ci\\payload.sh
 echo "--- Run test script ---"
