@@ -1,6 +1,10 @@
 #!/bin/sh
 cd /home/ci
 
+pwd
+whoami
+id
+
 ########################################################################################################################
 # Build and run tests using GPUs
 # Submits are grouped in blocks of up to 3, one per GPU, for clarity but are scheduled by SLURM
