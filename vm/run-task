@@ -11,7 +11,7 @@ VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
 # Copy the job to the VM then run it
 PAYLOAD=$1
 scp $PAYLOAD $VM_HOSTNAME:~/payload.sh
-ssh $VM_HOSTNAME ~/payload.sh
+ssh $VM_HOSTNAME ~/payload.sh $BRANCH $COMMIT
 
 # Copy the generated artifacts off
 ARTIFACT_PATH=artifacts/$SLURM_JOB_ID

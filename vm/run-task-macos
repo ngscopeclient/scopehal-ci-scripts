@@ -11,4 +11,4 @@ VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
 # Copy the job to the VM then run it
 PAYLOAD=$1
 scp $PAYLOAD $VM_HOSTNAME:/Users/ci/Documents/payload.sh
-ssh $VM_HOSTNAME /Users/ci/Documents/payload.sh
+ssh $VM_HOSTNAME /Users/ci/Documents/payload.sh $BRANCH $COMMIT
