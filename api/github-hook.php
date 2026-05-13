@@ -72,11 +72,11 @@ if(!preg_match('#^[a-f0-9]+$#', $after))
 	exit(0);
 }
 
-//Launch the actual builds
+//Launch the actual builds as the "ci" user
 //Put config in the environment so we have named variables to work with rather than positional arguments
 putenv("BRANCH=$branch");
 putenv("COMMIT=$after");
-$launchlog = shell_exec('/home/ci/scopehal-ci-scripts/batch-launcher.sh');
+$launchlog = shell_exec('sudo --user=ci /home/ci/scopehal-ci-scripts/batch-launcher.sh');
 
 fwrite($log, "\nSubmit log\n");
 fwrite($log, $launchlog);
