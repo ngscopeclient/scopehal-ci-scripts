@@ -7,11 +7,17 @@ cd /home/ci
 # so jobs from a future block can begin running once the job on their GPU from the previous block completes,
 # without any need to wait for other jobs in the block
 
+echo "hello world";
+
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_18:1,sanquentin:1 \
 	-p win11 \
 	--time=45 \
 	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh
+
+echo "foobar";
+exit;
+
 sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_51:1,sanquentin:1 \
 	-p debian-oldstable \
