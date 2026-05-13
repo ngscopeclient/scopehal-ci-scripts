@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# This script has to run as the "ci" user not www-data
-# so www-data needs permissions to sudo to ci
+# This script has to run as the "ci" user not www-data in order to ssh to builder nodes
+# (so www-data needs permissions to sudo to ci to run this specific script)
 cd /home/ci
 export PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm
-
-whoami
-exit
 
 ########################################################################################################################
 # Build and run tests using GPUs
