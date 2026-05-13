@@ -6,7 +6,8 @@ cd /home/ci
 export PATH=/usr/local/bin:/usr/bin:/bin:/home/ci/scopehal-ci-scripts/vm:/home/ci/scopehal-ci-scripts
 
 # We are probably not a login shell (i.e. not executing .bashrc),
-# so we need to add the internal root CA to the trusted list
+# so we need to add the internal root CA to the trusted list.
+# Otherwise xo-cli will fail to connect to the XAPI and not be ale to start/stop/reset VMs
 export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/antikernel-root-2026.crt
 
 ########################################################################################################################
@@ -15,23 +16,23 @@ export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/antikernel-root-2026.crt
 # so jobs from a future block can begin running once the job on their GPU from the previous block completes,
 # without any need to wait for other jobs in the block
 
-W11_JOB=`sbatch-wrapper.sh -L nvidia1630_18:1,sanquentin:1 -p win11 run-task-msys job-windows.sh`
-DEB_OLD_JOB=`sbatch-wrapper.sh -L nvidia1630_51:1,sanquentin:1 -p debian-oldstable run-task job-debian.sh`
-U_OLD_JOB=`sbatch-wrapper.sh -L nvidia1630_8a:1,sanquentin:1 -p ubuntu-oldlts run-task job-ubuntu.sh`
+JOB0=`sbatch-wrapper.sh -L nvidia1630_18:1,sanquentin:1 -p win11 run-task-msys job-windows.sh`
+JOB1=`sbatch-wrapper.sh -L nvidia1630_51:1,sanquentin:1 -p debian-oldstable run-task job-debian.sh`
+JOB2=`sbatch-wrapper.sh -L nvidia1630_8a:1,sanquentin:1 -p ubuntu-oldlts run-task job-ubuntu.sh`
 
 ##
-ARCH_JOB=`sbatch-wrapper.sh -L nvidia1630_51:1,sanquentin:1 -p arch run-task job-arch.sh`
-DEB_JOB=`sbatch-wrapper.sh -L nvidia1630_8a:1,sanquentin:1 -p debian-stable run-task job-debian.sh`
+JOB3=`sbatch-wrapper.sh -L nvidia1630_51:1,sanquentin:1 -p arch run-task job-arch.sh`
+JOB4=`sbatch-wrapper.sh -L nvidia1630_8a:1,sanquentin:1 -p debian-stable run-task job-debian.sh`
 
 ########################################################################################################################
 # Build and run tests with no GPU
 # These still request the "sanquentin" license so we can manage oversubscription of vCPUs on the server
 
-U_JOB=`sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu.sh`
-F_JOB=`sbatch-wrapper.sh -L sanquentin:1 -p fedora run-task job-fedora.sh`
+JOB5=`sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu.sh`
+JOB6=`sbatch-wrapper.sh -L sanquentin:1 -p fedora run-task job-fedora.sh`
 
 # Sanitizer and analyzer jobs don't upload artifacts
-# So we don't need to save the job IDs
+# So we don't need to save the job IDs or delay postprocessing
 sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task /job-ubuntu-sanitizer.sh 2>&1
 sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2>&1
 
@@ -40,7 +41,13 @@ sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2
 # These request the "macmini" license so we can limit the number of jobs on the host,
 # which has both a hypervisor-enforced 2-instance license limit, and only 16GB of RAM
 
-MAC_JOB=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
+JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
 
 ########################################################################################################################
 # When all jobs that can generate artifacts have finished, run a job that processes their results
+
+# This job uses negligible CPU so while it runs on sanquentin doesn't request a vCPU license
+sbatch-wrapper.sh \
+	-p postprocess \
+	--dependency=$JOB0,$JOB1,$JOB2,$JOB3,$JOB4,$JOB5,$JOB6,$JOB7 \
+	/home/ci/scopehal-ci-scripts/postprocess.sh $JOB0 $JOB1 $JOB2 $JOB3 $JOB4 $JOB5 $JOB6 $JOB7

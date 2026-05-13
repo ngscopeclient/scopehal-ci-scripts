@@ -67,8 +67,12 @@ After the runner is up and responding to SSH, if it's an Arch instance, it is fu
 
 At this point the actual SLURM job payload is invoked *on the orchestrator VM* (since the slurmd is running on the orchestrator, because the jobs are scheduled before the worker VMs are created). The typical payload is `vm/run-task` for Linux runners, `vm/run-task-macos` for MacOS runners, or `vm/run-task-msys` for the Windows runner. These are trivial launchers which SFTP the appropriate CI payload from `scopehal-test-scripts/ci-jobs/` to the runner instance, then launch it via SSH on the runner.
 
+Once the actual CI job has been completed by run-task, all generated binaries, PDFs, and other build artifacts are SFTP'd from `~/artifacts` on the runner VM to `/home/ci/artifacts/$SLURM_JOB_ID` on the orchestrator.
+
 Jobs have a 45-minute time limit and will be automatically terminated if not completed after this time has elapsed.
 
-TODO talk about how we get packages and other artifacts off the runner once the build completes
-
 After the job completes or is canceled, SLURM calls `slurm/epilog.sh` on the orchestrator VM, which then calls `vm/wipe-vm` to terminate the runner instance and revert it to a snapshot so it is ready for the next job.
+
+### Postprocessing
+
+After all build jobs have completed, a job runs on the "postprocess" virtual SLURM node.
