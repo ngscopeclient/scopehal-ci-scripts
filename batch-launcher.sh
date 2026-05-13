@@ -13,7 +13,7 @@ sbatch -o "run-logs/slurm-%j.out" \
 	-L nvidia1630_18:1,sanquentin:1 \
 	-p win11 \
 	--time=45 \
-	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh
+	run-task-msys scopehal-ci-scripts/ci-jobs/job-windows.sh 2>&1
 
 echo "foobar";
 exit;
