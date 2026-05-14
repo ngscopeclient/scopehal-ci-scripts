@@ -12,3 +12,8 @@ VM_HOSTNAME=$SLURM_JOB_NODELIST.cidmz.poulsbo.antikernel.net
 PAYLOAD=scopehal-ci-scripts/ci-jobs/$1
 scp $PAYLOAD $VM_HOSTNAME:/Users/ci/Documents/payload.sh
 ssh $VM_HOSTNAME /Users/ci/Documents/payload.sh $BRANCH $COMMIT
+
+# Copy the generated artifacts off
+ARTIFACT_PATH=artifacts/$SLURM_JOB_ID
+mkdir -p $ARTIFACT_PATH
+scp -r $VM_HOSTNAME:~/artifacts/* $ARTIFACT_PATH

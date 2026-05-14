@@ -41,7 +41,7 @@ scp artifacts/$ARCH_JOB/* ci@$FILE_HOST:$OUTBASE/arch-amd64/
 scp artifacts/$DEBIAN_STABLE_JOB/* ci@$FILE_HOST:$OUTBASE/debian-13-amd64/
 scp artifacts/$UBUNTU_LTS_JOB/* ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/
 scp artifacts/$FEDORA_JOB/* ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/
-scp artifacts/$MACOS_JOB/* ci@$FILE_HOST:$OUTBASE/macos-15-6-amd64/
+scp artifacts/$MACOS_JOB/* ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/
 
 # Push build logs for debugging
 scp run-logs/slurm-$WIN11_JOB.out ci@$FILE_HOST:$OUTBASE/win11-x64/
@@ -51,6 +51,6 @@ scp run-logs/slurm-$ARCH_JOB.out ci@$FILE_HOST:$OUTBASE/arch-amd64/
 scp run-logs/slurm-$DEBIAN_STABLE_JOB.out ci@$FILE_HOST:$OUTBASE/debian-13-amd64/
 scp run-logs/slurm-$UBUNTU_LTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/
 scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/
-scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-amd64/
+scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/
 
 # TODO: clean up local copies of artifacts and build logs
