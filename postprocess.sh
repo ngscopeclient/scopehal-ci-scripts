@@ -53,4 +53,21 @@ scp run-logs/slurm-$UBUNTU_LTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64
 scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/buildlog.txt
 scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/buildlog.txt
 
-# TODO: clean up local copies of artifacts and build logs
+#Clean up local copies of artifacts and build logs
+rm -rf artifacts/$WIN11_JOB
+rm -rf artifacts/$DEBIAN_OLDSTABLE_JOB
+rm -rf artifacts/$UBUNTU_OLDLTS_JOB
+rm -rf artifacts/$ARCH_JOB
+rm -rf artifacts/$DEBIAN_STABLE_JOB
+rm -rf artifacts/$FEDORA_JOB
+rm -rf artifacts/$MACOS_JOB
+
+rm -rf run-logs/slurm-$WIN11_JOB.out
+rm -rf run-logs/slurm-$DEBIAN_OLDSTABLE_JOB.out
+rm -rf run-logs/slurm-$UBUNTU_OLDLTS_JOB.out
+rm -rf run-logs/slurm-$ARCH_JOB.out
+rm -rf run-logs/slurm-$DEBIAN_STABLE_JOB.out
+rm -rf run-logs/slurm-$FEDORA_JOB.out
+rm -rf run-logs/slurm-$MACOS_JOB.out
+
+# This does not delete the run logs from static analysis passes or the postprocessor script
