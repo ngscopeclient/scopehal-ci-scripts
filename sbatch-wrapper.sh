@@ -1,2 +1,2 @@
 #!/bin/bash
-sbatch -o "run-logs/slurm-%j.out" --time=45 "$@" | cut -d " " -f 4
+sbatch -o "run-logs/slurm-%j.out" --time=60 "$@" | cut -d " " -f 4

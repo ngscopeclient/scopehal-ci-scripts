@@ -44,7 +44,7 @@ The available licenses are:
 * macmini: Jobs running on the Mac Mini
 * nvidia1630_18: GTX 1630 GPU at PCIe bus address 0x18
 * nvidia1630_51: GTX 1630 GPU at PCIe bus address 0x51
-* nvidia1630_8a: GTX 1630 GPU at PCIe bus address 0x8a
+* nvidia1630_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
 * sanquentin: Jobs running on the xcp-ng server
 
 Runner VMs with PCIe passthrough GPUs are statically bound to specific GPUs at configuration time; dynamic configuration is not supported. Any job on a runner that has an attached GPU must request the corresponding license to avoid resource conflicts, even if it does not intend to use the GPU, since no other runner is allowed to spawn attached to the same GPU until this runner terminates.
