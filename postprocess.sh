@@ -22,10 +22,11 @@ MONTH=`date +%m`
 DAY=`date +%d`
 HOUR=`date +%H`
 MINUTE=`date +%M`
+TIMEZONE=`date +%Z`
 
 # Get the full build directory name, makign sure to include the git hash but also the full date and time
 # Skip seconds, builds are slow enough we should never have >1 per minute and the hash will disambiguate anyway
-BUILD="$YEAR-$MONTH-$DAY-$HOUR$MINUTE-$SHORT_HASH"
+BUILD="$YEAR-$MONTH-$DAY-$HOUR$MINUTE$TIMEZONE-$SHORT_HASH"
 
 # Make the build directories on the static-file server
 FILE_HOST=dl1.antikernel.net
@@ -51,3 +52,5 @@ scp run-logs/slurm-$DEBIAN_STABLE_JOB.out ci@$FILE_HOST:$OUTBASE/debian-13-amd64
 scp run-logs/slurm-$UBUNTU_LTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/
 scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/
 scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-amd64/
+
+# TODO: clean up local copies of artifacts and build logs
