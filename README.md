@@ -63,7 +63,7 @@ Once a SLURM job reaches the head of the queue and is eligible to run (all reque
 
 The `spawn-vm` script determines the node the job is running on, then invokes the appropriate virtualization CLI tool (utmctl or xo-cli as appropriate) to launch the requested runner instance. Once the VM has started, it calls `vm/wait-for-boot` which polls the runner once per second until it accepts SSH connections.
 
-After the runner is up and responding to SSH, if it's an Arch instance, it is fully updated (`pacman -Syu --noconfirm --needed`) and rebooted, then `wait-for-boot` is invoked to block until the reboot has completed.
+After the runner is up and responding to SSH, if it's an Arch instance, it is fully updated (`pacman -Syu --noconfirm --needed`) and rebooted, then `wait-for-boot` is invoked again to block until the reboot has completed.
 
 At this point the actual SLURM job payload is invoked *on the orchestrator VM* (since the slurmd is running on the orchestrator, because the jobs are scheduled before the worker VMs are created). The typical payload is `vm/run-task` for Linux runners, `vm/run-task-macos` for MacOS runners, or `vm/run-task-msys` for the Windows runner. These are trivial launchers which SFTP the appropriate CI payload from `scopehal-test-scripts/ci-jobs/` to the runner instance, then launch it via SSH on the runner.
 
@@ -75,4 +75,4 @@ After the job completes or is canceled, SLURM calls `slurm/epilog.sh` on the orc
 
 ### Postprocessing
 
-After all build jobs have completed, a job runs on the "postprocess" virtual SLURM node.
+After all build jobs have completed, a job runs on the "postprocess" virtual SLURM node (which executes entirely on the orchestrator VM without spawning a worker VM). This job executes `postprocess.sh` which creates public directories on the static-file download server, uploads the generated build artifacts and logs, and then deletes the local copies of them to avoid exhausting disk space on the orchestrator.
