@@ -27,4 +27,3 @@ ssh $VM_HOSTNAME c:\\msys64\\msys2_shell.cmd -defterm -no-start -ucrt64 -c ./pay
 ARTIFACT_PATH=artifacts/$SLURM_JOB_ID
 mkdir -p $ARTIFACT_PATH
 scp -r $VM_HOSTNAME:c:\\users\\ci\\artifacts\\* $ARTIFACT_PATH
-scp -r $VM_HOSTNAME:c:\\users\\ci\\scopehal-apps\\build\\_CPack_Packages\\win64\\WIX\\wix.log $ARTIFACT_PATH
