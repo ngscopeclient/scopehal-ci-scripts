@@ -43,7 +43,7 @@ Jobs request one or more SLURM "licenses" to manage oversubscription, since SLUR
 The available licenses are:
 * macmini: Jobs running on the Mac Mini
 * nvidia1630_18: GTX 1630 GPU at PCIe bus address 0x18
-* nvidia1630_51: GTX 1630 GPU at PCIe bus address 0x51
+* nvidia3050_51: RTX 3050 GPU at PCIe bus address 0x51
 * nvidia3050_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
 * sanquentin: Jobs running on the xcp-ng server
 
