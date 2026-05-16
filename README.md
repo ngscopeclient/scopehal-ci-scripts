@@ -9,12 +9,12 @@ azonenberg is the primary maintainer of the infrastructure but this README is pr
 All x86 jobs run on "sanquentin", an xcp-ng virtualization server with (describe GPU set here once it's more finalized).
 
 The pool of available runners is:
-* ci-arch: Arch (fully updated), NVIDIA FIXME, 8 vCPU, 32GB RAM
-* ci-debian-oldstable: Debian 12, NVIDIA FIXME, 8 vCPU, 32GB RAM
-* ci-debian-stable: Debian 13, NVIDIA FIXME, 8 vCPU, 32GB RAM
+* ci-arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* ci-debian-oldstable: Debian 12, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* ci-debian-stable: Debian 13, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * ci-fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
 * ci-ubuntu-lts-\[1-2\]: Ubuntu 26.04, no GPU, 8 vCPU, 32GB RAM
-* ci-ubuntu-oldlts: Ubuntu 24.04, NVIDIA FIXME, 8 vCPU, 32GB RAM
+* ci-ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * ci-win11: Windows 11, NVIDIA FIXME, 8 vCPU, 32GB RAM
 
 ARM64 jobs run on "cheddar", a Mac Mini using with a 10-core Apple M4 CPU and 16GB of RAM.
