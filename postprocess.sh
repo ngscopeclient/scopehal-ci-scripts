@@ -29,7 +29,7 @@ TIMEZONE=`date +%Z`
 BUILD="$YEAR-$MONTH-$DAY-$HOUR$MINUTE$TIMEZONE-$SHORT_HASH"
 
 # Make the build directories on the static-file server
-FILE_HOST=dl1.antikernel.net
+FILE_HOST=dl1.ngscopeclient.org
 ssh ci@$FILE_HOST /var/home/ci/mkdirs.sh $YEAR $MONTH $BUILD
 
 # Push artifacts
