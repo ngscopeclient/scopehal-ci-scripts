@@ -42,7 +42,7 @@ sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2
 # which has both a hypervisor-enforced 2-instance license limit, and only 16GB of RAM
 
 JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
-JOB8=`sbatch-wrapper.sh -L macmini:1 -p macos run-task job-debian.sh`
+JOB8=`sbatch-wrapper.sh -L macmini:1 -p debian-stable-aarch64 run-task job-debian.sh`
 
 ########################################################################################################################
 # When all jobs that can generate artifacts have finished, run a job that processes their results
