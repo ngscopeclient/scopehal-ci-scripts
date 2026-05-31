@@ -26,6 +26,20 @@ elif [ "$NODE" == "macos" ]; then
 	echo "Wiping runner...";
 	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl delete $RUNNER_NAME
 
+#Special case the aarch64 Debian VM
+elif [ "$NODE" == "debian-stable-aarch64" ]; then
+
+	# Set this as needed for $NODE
+	RUNNER_NAME="ci-debian-stable-aarch64-runner"
+
+	# NOTE: need to add app control permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
+	# or this won't work
+	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
+	echo "Shutting down runner...";
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl stop $RUNNER_NAME
+	echo "Wiping runner...";
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl delete $RUNNER_NAME
+
 # Default case: assume it's an xcp-ng VM
 else
 	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)

@@ -42,6 +42,7 @@ sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2
 # which has both a hypervisor-enforced 2-instance license limit, and only 16GB of RAM
 
 JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
+JOB8=`sbatch-wrapper.sh -L macmini:1 -p macos run-task job-debian.sh`
 
 ########################################################################################################################
 # When all jobs that can generate artifacts have finished, run a job that processes their results
@@ -49,5 +50,5 @@ JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
 # This job uses negligible CPU so while it runs on sanquentin doesn't request a vCPU license
 sbatch-wrapper.sh \
 	-p postprocess \
-	--dependency=$JOB0,$JOB1,$JOB2,$JOB3,$JOB4,$JOB5,$JOB6,$JOB7 \
-	/home/ci/scopehal-ci-scripts/postprocess.sh $JOB0 $JOB1 $JOB2 $JOB3 $JOB4 $JOB5 $JOB6 $JOB7
+	--dependency=$JOB0,$JOB1,$JOB2,$JOB3,$JOB4,$JOB5,$JOB6,$JOB7,$JOB8 \
+	/home/ci/scopehal-ci-scripts/postprocess.sh $JOB0 $JOB1 $JOB2 $JOB3 $JOB4 $JOB5 $JOB6 $JOB7 $JOB8

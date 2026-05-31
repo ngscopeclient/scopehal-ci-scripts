@@ -32,6 +32,21 @@ elif [ "$NODE" == "macos" ]; then
 	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl clone $TEMPLATE_NAME --name $RUNNER_NAME
 	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl start $RUNNER_NAME
 
+#Special case the aarch64 runner
+elif [ "$NODE" == "debian-stable-aarch64" ]; then
+
+	echo "print Starting worker node $NODE on mac mini...";
+
+	# Set this as needed for $NODE
+	TEMPLATE_NAME="ci-debian-stable-aarch64"
+	RUNNER_NAME="ci-debian-stable-aarch64-runner"
+
+	# NOTE: need to add app control permissions as described by alanb-sony https://github.com/utmapp/UTM/issues/5377
+	# or this won't work
+	MAC_HOST=cheddar.lab.poulsbo.antikernel.net
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl clone $TEMPLATE_NAME --name $RUNNER_NAME
+	ssh azonenberg@$MAC_HOST /usr/local/bin/utmctl start $RUNNER_NAME
+
 # Default case: assume it's an xcp-ng VM
 else
 	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
