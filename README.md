@@ -9,17 +9,18 @@ azonenberg is the primary maintainer of the infrastructure but this README is pr
 All x86 jobs run on "sanquentin", an xcp-ng virtualization server with (describe GPU set here once it's more finalized).
 
 The pool of available runners is:
-* ci-arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* ci-debian-oldstable: Debian 12, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* ci-debian-stable: Debian 13, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* ci-fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
-* ci-ubuntu-lts-\[1-2\]: Ubuntu 26.04, no GPU, 8 vCPU, 32GB RAM
-* ci-ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* ci-win11: Windows 11, NVIDIA FIXME, 8 vCPU, 32GB RAM
+* arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* debian-oldstable: Debian 12, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* debian-stable: Debian 13, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
+* ubuntu-lts-\[1-2\]: Ubuntu 26.04, no GPU, 8 vCPU, 32GB RAM
+* ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+* win11: Windows 11, NVIDIA FIXME, 8 vCPU, 32GB RAM
 
 ARM64 jobs run on "cheddar", a Mac Mini using with a 10-core Apple M4 CPU and 16GB of RAM.
 
-* ci-macos: 8 vCPU, 8GB RAM, MacOS 15.6.1
+* macos: 8 vCPU, 8GB RAM, MacOS 15.6.1
+* debian-stable-aarch64: 8 vCPU, 8GB RAM, Debian 13
 
 ## Push hook
 
@@ -43,7 +44,7 @@ Jobs request one or more SLURM "licenses" to manage oversubscription, since SLUR
 The available licenses are:
 * macmini: Jobs running on the Mac Mini
 * nvidia1630_18: GTX 1630 GPU at PCIe bus address 0x18
-* nvidia3050_51: RTX 3050 GPU at PCIe bus address 0x51
+* nvidia3050_51: RTX 3050 6GB GPU at PCIe bus address 0x51
 * nvidia3050_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
 * sanquentin: Jobs running on the xcp-ng server
 
