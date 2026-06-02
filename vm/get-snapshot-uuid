@@ -6,25 +6,25 @@ fi
 
 case "$1" in
 	"arch")
-		echo "d69829c3-3c2e-7eaa-a8af-ad9524cfc7d4";;
+		echo "d210f094-8563-293c-fe85-c9e50f34be91";;
 
 	"debian-stable")
-		echo "dd5a5807-bedc-0ea7-bd64-5a12bf6cb260";;
+		echo "ed09aa08-9d2a-305e-af06-46db6c8bfde1";;
 
 	"debian-oldstable")
-		echo "548c1a3b-e0e7-1812-605c-f2d3bd4a6972";;
+		echo "19e5f735-75eb-068b-4bc7-e7b9b136a3c7";;
 
 	"fedora")
-		echo "e5646b53-e50e-e40a-654e-20c07e41dfaa";;
+		echo "c99a5d1c-6770-d897-3bcd-00ded6927f04";;
 
 	"ubuntu-lts-1")
-		echo "19fc95d1-239c-5ba8-ee9c-8684e5113b7a";;
+		echo "a29e3b92-c7c6-4200-ef23-47f74fa1f498";;
 
 	"ubuntu-lts-2")
-		echo "014b4993-9c9f-8ebf-75f1-2a382cc4b36d";;
+		echo "c045b04a-6af8-73a6-a983-9a0766bf136a";;
 
 	"ubuntu-oldlts")
-		echo "c5ca553a-c94d-e230-3dba-d5412e8258df";;
+		echo "b1324075-98ac-4f06-7f02-c9b494dac8f9";;
 
 	"win11")
 		echo "9f64f3a0-1d64-6403-26af-8bc2d0d8ee8c";;
