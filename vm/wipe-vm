@@ -45,9 +45,10 @@ else
 	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 	SNAPSHOT_UUID=`get-snapshot-uuid $NODE` || (echo "invalid node ID"; exit 1;)
 
-	# Shut it down and wipe it
+	# Shut it down forcibly (we don't care about data loss and this has to succeed so we have a clean slate for later)
+	# and wipe it
 	echo "Shutting down runner...";
-	xo-cli vm.stop id=$VM_UUID > /dev/null
+	xo-cli vm.stop force=true id=$VM_UUID > /dev/null
 	echo "Wiping runner...";
 	xo-cli vm.revert snapshot=$SNAPSHOT_UUID > /dev/null
 fi

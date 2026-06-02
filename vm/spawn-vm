@@ -70,7 +70,7 @@ if [ "$NODE" == "arch" ]; then
 	# Reboot it
 	echo "print Shutting down $node..."
 	VM_UUID=`get-vm-uuid $NODE` || (echo "invalid node ID"; exit 1;)
-	xo-cli vm.stop id=$VM_UUID > /dev/null
+	xo-cli vm.stop force=true id=$VM_UUID > /dev/null
 
 	echo "print Restarting $NODE...";
 	xo-cli vm.start id=$VM_UUID > /dev/null
