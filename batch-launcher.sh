@@ -16,7 +16,7 @@ export NODE_EXTRA_CA_CERTS=/etc/ssl/certs/antikernel-root-2026.crt
 # so jobs from a future block can begin running once the job on their GPU from the previous block completes,
 # without any need to wait for other jobs in the block
 
-JOB0=`sbatch-wrapper.sh -L nvidia1630_18:1,sanquentin:1 -p win11 run-task-msys job-windows.sh`
+JOB0=`sbatch-wrapper.sh -L nvidia3050_52:1,sanquentin:1 -p win11 run-task-msys job-windows.sh`
 JOB1=`sbatch-wrapper.sh -L nvidia3050_51:1,sanquentin:1 -p debian-oldstable run-task job-debian.sh`
 JOB2=`sbatch-wrapper.sh -L nvidia3050_8a:1,sanquentin:1 -p ubuntu-oldlts run-task job-ubuntu.sh`
 

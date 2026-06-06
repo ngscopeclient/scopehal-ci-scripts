@@ -6,7 +6,7 @@ azonenberg is the primary maintainer of the infrastructure but this README is pr
 
 ## Hardware setup
 
-All x86 jobs run on "sanquentin", an xcp-ng virtualization server with (describe GPU set here once it's more finalized).
+All x86 jobs run on "sanquentin", an xcp-ng virtualization server with three RTX 3050 GPUs.
 
 The pool of available runners is:
 * arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
@@ -15,7 +15,7 @@ The pool of available runners is:
 * fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
 * ubuntu-lts-\[1-2\]: Ubuntu 26.04, no GPU, 8 vCPU, 32GB RAM
 * ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* win11: Windows 11, NVIDIA FIXME, 8 vCPU, 32GB RAM
+* win11: Windows 11, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 
 ARM64 jobs run on "cheddar", a Mac Mini using with a 10-core Apple M4 CPU and 16GB of RAM.
 
@@ -43,16 +43,16 @@ Jobs request one or more SLURM "licenses" to manage oversubscription, since SLUR
 
 The available licenses are:
 * macmini: Jobs running on the Mac Mini
-* nvidia1630_18: GTX 1630 GPU at PCIe bus address 0x18
 * nvidia3050_51: RTX 3050 6GB GPU at PCIe bus address 0x51
+* nvidia3050_52: RTX 3050 GPU at PCIe bus address 0x52
 * nvidia3050_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
 * sanquentin: Jobs running on the xcp-ng server
 
 Runner VMs with PCIe passthrough GPUs are statically bound to specific GPUs at configuration time; dynamic configuration is not supported. Any job on a runner that has an attached GPU must request the corresponding license to avoid resource conflicts, even if it does not intend to use the GPU, since no other runner is allowed to spawn attached to the same GPU until this runner terminates.
 
 As of this writing, the mapping is:
-* 0x18: ci-win11
 * 0x51: ci-arch, ci-debian-oldstable
+* 0x52: ci-win11
 * 0x8a: ci-debian-stable, ci-ubuntu-oldlts
 * All others: no passthrough GPU
 
