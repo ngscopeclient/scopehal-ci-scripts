@@ -45,6 +45,10 @@
 
 	foreach($lines as $line)
 	{
+		$line = trim($line);
+		if($line == '')
+			continue;
+
 		$i = 0;
 		$len = 13;
 		$jobid = trim(substr($line, $i, $len));
