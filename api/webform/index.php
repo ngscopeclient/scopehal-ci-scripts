@@ -45,8 +45,7 @@
 
 	foreach($lines as $line)
 	{
-		$line = trim($line);
-		if($line == '')
+		if(trim($line) == '')
 			continue;
 
 		$i = 0;
