@@ -16,7 +16,7 @@
 	</tr>
 
 <?php
-	$txt = `squeue --format="%.13i %25P %.15j %.8T %.10M %30W %R" --noheader`
+	$txt = `squeue --format="%.13i %25P %.15j %.8T %.10M %30W %R" --noheader`;
 	$lines = explode("\n", $txt);
 
 	foreach($lines as $line)
