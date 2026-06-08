@@ -1,6 +1,30 @@
 <html>
 <head>
 	<title>CI Web Status / Control</title>
+
+	<style type='text/css'>
+		table, td, th
+		{
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+
+		td, th
+		{
+			padding-left: 10px;
+			padding-right: 10px;
+		}
+
+		tr:nth-child(even)
+		{
+			background-color: #a0a0a0;
+		}
+
+		tr:nth-child(odd)
+		{
+			background-color: #d0d0d0;
+		}
+	</style>
 </head>
 <body>
 
