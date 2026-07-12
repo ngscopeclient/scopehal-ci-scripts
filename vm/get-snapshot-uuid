@@ -18,10 +18,13 @@ case "$1" in
 		echo "6ca44d8d-a4d6-141c-b8d9-244885962c22";;
 
 	"ubuntu-lts-1")
-		echo "e362be37-a4c1-1f26-3269-11dd2c908f9a";;
+		echo "c48a0b13-b4ed-9ceb-28a7-bb124f89c692";;
 
 	"ubuntu-lts-2")
 		echo "61d4e079-0f90-cc1b-748a-87f89135d715";;
+
+	"ubuntu-lts-3")
+		echo "e771e5e9-b0bf-de23-ed5a-dab23dc1aa25";;
 
 	"ubuntu-oldlts")
 		echo "92396e35-66c0-ec84-81d1-dd69f78aa051";;

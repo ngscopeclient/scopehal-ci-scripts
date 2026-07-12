@@ -26,15 +26,15 @@ JOB4=`sbatch-wrapper.sh -L nvidia3050_8a:1,sanquentin:1 -p debian-stable run-tas
 
 ########################################################################################################################
 # Build and run tests with no GPU
-# These still request the "sanquentin" license so we can manage oversubscription of vCPUs on the server
+# These still request the "sanquentin" or "rikers" license so we can manage oversubscription of vCPUs on the server
 
-JOB5=`sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu.sh`
+JOB5=`sbatch-wrapper.sh -L rikers:1 -p ubuntu-lts run-task job-ubuntu.sh`
 JOB6=`sbatch-wrapper.sh -L sanquentin:1 -p fedora run-task job-fedora.sh`
 
 # Sanitizer and analyzer jobs don't upload artifacts
 # So we don't need to save the job IDs or delay postprocessing
-sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-sanitizer.sh 2>&1
-sbatch-wrapper.sh -L sanquentin:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2>&1
+sbatch-wrapper.sh -L rikers:1 -p ubuntu-lts run-task job-ubuntu-sanitizer.sh 2>&1
+sbatch-wrapper.sh -L rikers:1 -p ubuntu-lts run-task job-ubuntu-analyze.sh 2>&1
 
 ########################################################################################################################
 # Build and run tests that execute on the Mac Mini
