@@ -45,10 +45,14 @@ JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
 JOB8=`sbatch-wrapper.sh -L macmini:1 -p debian-stable-aarch64 run-task job-debian.sh`
 
 ########################################################################################################################
+#Tarball generation shouldn't use any real resources, so not requesting license for it
+JOB9=`sbatch-wrapper.sh -p debian-stable run-task job-tarball.sh`
+
+########################################################################################################################
 # When all jobs that can generate artifacts have finished, run a job that processes their results
 
 # This job uses negligible CPU so while it runs on sanquentin doesn't request a vCPU license
 sbatch-wrapper.sh \
 	-p postprocess \
-	--dependency=$JOB0,$JOB1,$JOB2,$JOB3,$JOB4,$JOB5,$JOB6,$JOB7,$JOB8 \
-	/home/ci/scopehal-ci-scripts/postprocess.sh $JOB0 $JOB1 $JOB2 $JOB3 $JOB4 $JOB5 $JOB6 $JOB7 $JOB8
+	--dependency=$JOB0,$JOB1,$JOB2,$JOB3,$JOB4,$JOB5,$JOB6,$JOB7,$JOB8,$JOB9 \
+	/home/ci/scopehal-ci-scripts/postprocess.sh $JOB0 $JOB1 $JOB2 $JOB3 $JOB4 $JOB5 $JOB6 $JOB7 $JOB8 $JOB9

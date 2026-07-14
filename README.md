@@ -36,6 +36,7 @@ Jobs are submitted to the queue by `batch-launcher.sh`. Currently this is:
 * One build-and-test cycle for each supported operating system
 * One build-and-test cycle on Ubuntu LTS with asan and ubsan enabled
 * cppcheck and clang-analyzer static analysis on Ubuntu LTS
+* Tarball generation on debian-stable
 
 Each job is submitted to a SLURM partition corresponding to the desired runner type. Partitions all have a single SLURM node in them, with the exception of ubuntu-lts which has two.
 
