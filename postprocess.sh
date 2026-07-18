@@ -13,6 +13,7 @@ UBUNTU_LTS_JOB=$6
 FEDORA_JOB=$7
 MACOS_JOB=$8
 DEBIAN_AARCH64_JOB=$9
+TARBALL_JOB=$10
 
 # Get the short commit hash (for now truncate to 8 chars)
 SHORT_HASH=`echo $COMMIT | cut -c 1-8`
@@ -44,6 +45,7 @@ scp artifacts/$UBUNTU_LTS_JOB/* ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/
 scp artifacts/$FEDORA_JOB/* ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/
 scp artifacts/$MACOS_JOB/* ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/
 scp artifacts/$DEBIAN_AARCH64_JOB/* ci@$FILE_HOST:$OUTBASE/debian-13-aarch64/
+scp artifacts/$TARBALL_JOB/* ci@$FILE_HOST:$OUTBASE/source-tarball/
 
 # Push build logs for debugging
 scp run-logs/slurm-$WIN11_JOB.out ci@$FILE_HOST:$OUTBASE/win11-x64/buildlog.txt
@@ -55,6 +57,7 @@ scp run-logs/slurm-$UBUNTU_LTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64
 scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/buildlog.txt
 scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/buildlog.txt
 scp run-logs/slurm-$DEBIAN_AARCH64_JOB.out ci@$FILE_HOST:$OUTBASE/debian-13-aarch64/buildlog.txt
+scp run-logs/slurm-$TARBALL_JOB.out ci@$FILE_HOST:$OUTBASE/source-tarball/buildlog.txt
 
 #Clean up local copies of artifacts and build logs
 rm -rf artifacts/$WIN11_JOB
@@ -65,6 +68,7 @@ rm -rf artifacts/$DEBIAN_STABLE_JOB
 rm -rf artifacts/$FEDORA_JOB
 rm -rf artifacts/$MACOS_JOB
 rm -rf artifacts/$DEBIAN_AARCH64_JOB
+rm -rf artifacts/$TARBALL_JOB
 
 rm -f run-logs/slurm-$WIN11_JOB.out
 rm -f run-logs/slurm-$DEBIAN_OLDSTABLE_JOB.out
@@ -74,5 +78,6 @@ rm -f run-logs/slurm-$DEBIAN_STABLE_JOB.out
 rm -f run-logs/slurm-$FEDORA_JOB.out
 rm -f run-logs/slurm-$MACOS_JOB.out
 rm -f run-logs/slurm-$DEBIAN_AARCH64_JOB.out
+rm -f run-logs/slurm-$TARBALL_AARCH64_JOB.out
 
 # This does not delete the run logs from static analysis passes or the postprocessor script
