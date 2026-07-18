@@ -6,21 +6,38 @@ azonenberg is the primary maintainer of the infrastructure but this README is pr
 
 ## Hardware setup
 
-All x86 jobs run on "sanquentin", an xcp-ng virtualization server with three RTX 3050 GPUs.
+Since most runners have permanently-assigned PCIe passthrough GPUs, each runner is permanently assigned to one server and they cannot be dynamically scheduled.
 
-The pool of available runners is:
+We use SLURM's floating-license-pool system to limit oversubscription of compute resources (CPU/RAM) and provide mutual exclusion for PCIe passthrough devices that can be bound to one of several VMs, but not both. No actual FlexLM or similar licenses are in use, but this is the best means available in SLURM to arbitrate access to shared resources.
+
+Each CI job **must** request all of the SLURM licenses listed in the table for the corresponding job partition **even if you do not intend to use the GPU or full RAM capacity** since the GPU and RAM will be bound to the runner regardless of whether you use it or not. Failure to request the correct license can result in stalls in which a runner VM (not necessarily the incorrectly licensed one) fails to start due to resource unavailability on the host. The SLURM job will stall waiting for the not-started runner to be reachable over SSH, until the timeout period elapses and the job is canceled.
+
+### cheddar
+
+This server is a Mac Mini with a 10-core Apple M4 CPU and 16GB of RAM.
+
+| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+|----------|-----------------|-------|----------|----|-----|----------------|
+| macos | macos | 8 | 8 | MacOS 15.6.1 | Apple M4 (PV) | macmini |
+| debian-stable-aarch64 | macos | 8 | 8 | Debian 13 aarch64 | None | macmini |
+
+### rikers
+
+This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores), 128GB of RAM, and an NVIDIA GTX 1630 GPU which is currently allocated to a non-CI VM and not available for use by CI jobs.
+
+* ubuntu-lts-\[1-3\]: Ubuntu 26.04, no GPU, 12 vCPU, 24GB RAM
+
+### sanquentin
+
+This server has a Xeon Platinum 8362 (32 physical / 64 logical cores), 512GB of RAM, and three NVIDIA RTX 3050 GPUs.
+
+Available runners on this host are:
 * arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * debian-oldstable: Debian 12, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * debian-stable: Debian 13, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
-* ubuntu-lts-\[1-2\]: Ubuntu 26.04, no GPU, 8 vCPU, 32GB RAM
 * ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
 * win11: Windows 11, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-
-ARM64 jobs run on "cheddar", a Mac Mini using with a 10-core Apple M4 CPU and 16GB of RAM.
-
-* macos: 8 vCPU, 8GB RAM, MacOS 15.6.1
-* debian-stable-aarch64: 8 vCPU, 8GB RAM, Debian 13
 
 ## Push hook
 
@@ -47,7 +64,8 @@ The available licenses are:
 * nvidia3050_51: RTX 3050 6GB GPU at PCIe bus address 0x51
 * nvidia3050_52: RTX 3050 GPU at PCIe bus address 0x52
 * nvidia3050_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
-* sanquentin: Jobs running on the xcp-ng server
+* rikers: Jobs running on small xcp-ng server
+* sanquentin: Jobs running on large xcp-ng server
 
 Runner VMs with PCIe passthrough GPUs are statically bound to specific GPUs at configuration time; dynamic configuration is not supported. Any job on a runner that has an attached GPU must request the corresponding license to avoid resource conflicts, even if it does not intend to use the GPU, since no other runner is allowed to spawn attached to the same GPU until this runner terminates.
 

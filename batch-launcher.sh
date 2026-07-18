@@ -45,8 +45,9 @@ JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
 JOB8=`sbatch-wrapper.sh -L macmini:1 -p debian-stable-aarch64 run-task job-debian.sh`
 
 ########################################################################################################################
-#Tarball generation shouldn't use any real resources, so not requesting license for it
-JOB9=`sbatch-wrapper.sh -p debian-stable run-task job-tarball.sh`
+# Tarball generation doesn't need much of anything, use an ubuntu no-GPU node
+
+JOB9=`sbatch-wrapper.sh -L rikers:1 -p ubuntu-lts run-task job-tarball.sh`
 
 ########################################################################################################################
 # When all jobs that can generate artifacts have finished, run a job that processes their results
