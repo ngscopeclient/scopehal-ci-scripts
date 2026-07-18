@@ -18,7 +18,7 @@ This server is a Mac Mini with a 10-core Apple M4 CPU and 16GB of RAM.
 
 A maximum of one job can run concurrently on this host (limited by RAM).
 
-| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+| Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
 | macos | macos | 8 | 8 | MacOS 15.6.1 | Apple M4 (PV) | macmini |
 | debian-stable-aarch64 | macos | 8 | 8 | Debian 13 aarch64 | None | macmini |
@@ -29,7 +29,7 @@ This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores
 
 A maximum of three jobs can run concurrently on this host (limited by RAM).
 
-| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+| Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
 | ubuntu-lts-\[1-3\] | ubuntu-lts | 12 | 24 | Ubuntu 26.04 | None | rikers |
 
@@ -41,7 +41,7 @@ A maximum of five jobs can run concurrently on this host (limited by vCPU count)
 
 TODO: now that we moved the Ubuntu jobs to Rikers, do we want to assign more vCPUs to these runners or add more runners to improve parallelism? Three GPUs plus fedora being the only non-GPU job means we'll never use more than 4 of the allowed 5
 
-| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+| Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
 | arch | arch | 8 | 32 | Arch (fully updated) | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
 | debian-oldstable | debian-oldstable | 8 | 32 | Debian 12 | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
