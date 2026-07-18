@@ -16,6 +16,8 @@ Each CI job **must** request all of the SLURM licenses listed in the table for t
 
 This server is a Mac Mini with a 10-core Apple M4 CPU and 16GB of RAM.
 
+A maximum of one job can run concurrently on this host (limited by RAM).
+
 | Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
 | macos | macos | 8 | 8 | MacOS 15.6.1 | Apple M4 (PV) | macmini |
@@ -25,19 +27,28 @@ This server is a Mac Mini with a 10-core Apple M4 CPU and 16GB of RAM.
 
 This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores), 128GB of RAM, and an NVIDIA GTX 1630 GPU which is currently allocated to a non-CI VM and not available for use by CI jobs.
 
-* ubuntu-lts-\[1-3\]: Ubuntu 26.04, no GPU, 12 vCPU, 24GB RAM
+A maximum of three jobs can run concurrently on this host (limited by RAM).
+
+| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+|----------|-----------------|-------|----------|----|-----|----------------|
+| ubuntu-lts-\[1-3\] | ubuntu-lts | 12 | 24 | Ubuntu 26.04 | None | rikers |
 
 ### sanquentin
 
 This server has a Xeon Platinum 8362 (32 physical / 64 logical cores), 512GB of RAM, and three NVIDIA RTX 3050 GPUs.
 
-Available runners on this host are:
-* arch: Arch (fully updated), NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* debian-oldstable: Debian 12, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* debian-stable: Debian 13, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* fedora: Fedora 43, no GPU, 8 vCPU, 32GB RAM
-* ubuntu-oldlts: Ubuntu 24.04, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
-* win11: Windows 11, NVIDIA RTX 3050, 8 vCPU, 32GB RAM
+A maximum of five jobs can run concurrently on this host (limited by vCPU count).
+
+TODO: now that we moved the Ubuntu jobs to Rikers, do we want to assign more vCPUs to these runners or add more runners to improve parallelism? Three GPUs plus fedora being the only non-GPU job means we'll never use more than 4 of the allowed 5
+
+| Hostname | SLURM partition | vCPUs | RAM (GB) | OS | GPU | SLURM licenses |
+|----------|-----------------|-------|----------|----|-----|----------------|
+| arch | arch | 8 | 32 | Arch (fully updated) | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
+| debian-oldstable | debian-oldstable | 8 | 32 | Debian 12 | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
+| debian-stable | debian-stable | 8 | 32 | Debian 13 | NVIDIA RTX 3050 | nvidia3050_8a,sanquentin |
+| fedora | fedora | 8 | 32 | Fedora 43 | none | sanquentin |
+| ubuntu-oldlts | ubuntu-oldlts | 8 | 32 | Ubuntu 24.04 | NVIDIA RTX 3050 | nvidia3050_8a,sanquentin |
+| win11 | win11 | 8 | 32 | Windows 11 Pro 25H2 | NVIDIA RTX 3050 | nvidia3050_52,sanquentin |
 
 ## Push hook
 
@@ -55,7 +66,7 @@ Jobs are submitted to the queue by `batch-launcher.sh`. Currently this is:
 * cppcheck and clang-analyzer static analysis on Ubuntu LTS
 * Tarball generation on debian-stable
 
-Each job is submitted to a SLURM partition corresponding to the desired runner type. Partitions all have a single SLURM node in them, with the exception of ubuntu-lts which has two.
+Each job is submitted to a SLURM partition corresponding to the desired runner type. Partitions all have a single SLURM node in them, with the exception of ubuntu-lts which has three identical instances.
 
 Jobs request one or more SLURM "licenses" to manage oversubscription, since SLURM is not natively aware of the fact that the virtual runners share CPU, RAM, and GPU resources on a physical virtualization host. These are not actual software licenses a la FlexLM, but provide a convenient form of mutexing without custom SLURM plugins.
 
@@ -67,15 +78,7 @@ The available licenses are:
 * rikers: Jobs running on small xcp-ng server
 * sanquentin: Jobs running on large xcp-ng server
 
-Runner VMs with PCIe passthrough GPUs are statically bound to specific GPUs at configuration time; dynamic configuration is not supported. Any job on a runner that has an attached GPU must request the corresponding license to avoid resource conflicts, even if it does not intend to use the GPU, since no other runner is allowed to spawn attached to the same GPU until this runner terminates.
-
-As of this writing, the mapping is:
-* 0x51: ci-arch, ci-debian-oldstable
-* 0x52: ci-win11
-* 0x8a: ci-debian-stable, ci-ubuntu-oldlts
-* All others: no passthrough GPU
-
-To avoid overloading the VM server and causing poor performance for other workloads such as the CI dashboard and lab sandbox instances, all jobs running on it must request the "sanquentin" license, issued from a pool of five licenses which caps the number of concurrent runners at five even if there are no GPU conflicts.
+See the tables in the "hardware setup" section for which licenses are required by jobs submitted to a given partition.
 
 ### Job lifecycle
 
