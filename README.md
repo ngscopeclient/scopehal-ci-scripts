@@ -35,7 +35,7 @@ A maximum of three jobs can run concurrently on this host (limited by RAM).
 
 ### sanquentin
 
-This server has a Xeon Platinum 8362 (32 physical / 64 logical cores), 512GB of RAM, and three NVIDIA RTX 3050 GPUs.
+This server has a Xeon Scalable Platinum 8362 (32 physical / 64 logical cores), 512GB of RAM, and three NVIDIA RTX 3050 GPUs.
 
 A maximum of five jobs can run concurrently on this host (limited by vCPU count).
 
