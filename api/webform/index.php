@@ -37,6 +37,8 @@
 		<th>Name</th>
 		<th>State</th>
 		<th>Time</th>
+		<th>Licenses</th>
+		<th>Node</th>
 	</tr>
 
 <?php
@@ -69,12 +71,22 @@
 		$time = trim(substr($line, $i, $len));
 		$i += $len + 1;
 
+		$len = 30;
+		$licenses = trim(substr($line, $i, $len));
+		$i += $len + 1;
+
+		$len = 20;
+		$nodes = trim(substr($line, $i, $len));
+		$i += $len + 1;
+
 		echo "<tr>\n";
 		echo "<td>$jobid</td>\n";
 		echo "<td>$partition</td>\n";
 		echo "<td>$name</td>\n";
 		echo "<td>$state</td>\n";
 		echo "<td>$time</td>\n";
+		echo "<td>$licenses</td>\n";
+		echo "<td>$nodes</td>\n";
 		echo "</tr>\n";
 	}
 ?>
