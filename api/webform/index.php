@@ -75,7 +75,7 @@
 		$licenses = trim(substr($line, $i, $len));
 		$i += $len + 1;
 
-		$len = 20;
+		$len = 25;
 		$nodes = trim(substr($line, $i, $len));
 		$i += $len + 1;
 
