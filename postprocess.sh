@@ -13,7 +13,7 @@ UBUNTU_LTS_JOB=$6
 FEDORA_JOB=$7
 MACOS_JOB=$8
 DEBIAN_AARCH64_JOB=$9
-TARBALL_JOB=$10
+TARBALL_JOB=${10}
 
 # Get the short commit hash (for now truncate to 8 chars)
 SHORT_HASH=`echo $COMMIT | cut -c 1-8`
@@ -78,6 +78,6 @@ rm -f run-logs/slurm-$DEBIAN_STABLE_JOB.out
 rm -f run-logs/slurm-$FEDORA_JOB.out
 rm -f run-logs/slurm-$MACOS_JOB.out
 rm -f run-logs/slurm-$DEBIAN_AARCH64_JOB.out
-rm -f run-logs/slurm-$TARBALL_AARCH64_JOB.out
+rm -f run-logs/slurm-$TARBALL_JOB.out
 
 # This does not delete the run logs from static analysis passes or the postprocessor script
