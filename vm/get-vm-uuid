@@ -10,11 +10,11 @@ case "$1" in
 	"arch")
 		echo "a41ad7bb-8e67-ff50-dedf-c86a10a569c9";;
 
-	"debian-stable")
-		echo "9b78594a-b9d3-09cf-6e28-4d9ec6d72077";;
-
 	"debian-oldstable")
 		echo "ca3722cc-8fa0-355c-c6c9-b8ef8b7f4d0f";;
+
+	"debian-stable")
+		echo "9b78594a-b9d3-09cf-6e28-4d9ec6d72077";;
 
 	"fedora")
 		echo "7f2bbfa4-fbb7-998d-03c4-fa8c9bca17d9";;
