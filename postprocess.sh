@@ -34,6 +34,9 @@ BUILD="$YEAR-$MONTH-$DAY-$HOUR$MINUTE$TIMEZONE-$SHORT_HASH"
 FILE_HOST=dl1.ngscopeclient.org
 ssh ci@$FILE_HOST /var/home/ci/mkdirs.sh $YEAR $MONTH $BUILD
 
+# Artifacts from some builds have bad permissions, fix them
+chmod 644 artifacts/*/*
+
 # Push artifacts
 OUTBASE=/var/dl/ngscopeclient-ci/$YEAR/$MONTH/$BUILD
 scp artifacts/$WIN11_JOB/* ci@$FILE_HOST:$OUTBASE/win11-x64/
