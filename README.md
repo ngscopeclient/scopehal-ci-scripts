@@ -25,13 +25,13 @@ A maximum of one job can run concurrently on this host (limited by RAM).
 
 ### rikers
 
-This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores), 128GB of RAM, and an NVIDIA GTX 1630 GPU which is currently allocated to a non-CI VM and not available for use by CI jobs.
+This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores), 512GB of RAM, and an NVIDIA GTX 1630 GPU which is currently allocated to a non-CI VM and not available for use by CI jobs.
 
-A maximum of three jobs can run concurrently on this host (limited by RAM).
+A maximum of four jobs can run concurrently on this host (limited by vCPU count).
 
 | Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | Licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
-| ubuntu-lts-\[1-3\] | ubuntu-lts | 12 | 24 | Ubuntu 26.04 | None | rikers |
+| ubuntu-lts-\[1-3\] | ubuntu-lts | 12 | 32 | Ubuntu 26.04 | None | rikers |
 
 ### sanquentin
 
