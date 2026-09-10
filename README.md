@@ -23,6 +23,16 @@ A maximum of one job can run concurrently on this host (limited by RAM).
 | macos | macos | 8 | 8 | MacOS 15.6.1 | Apple M4 (PV) | macmini |
 | debian-stable-aarch64 | macos | 8 | 8 | Debian 13 aarch64 | None | macmini |
 
+### principals-office
+
+This server is an Intel NUC with an i7-8559U (4 physical / 8 logical cores), 16GB of RAM, and an Intel Iris Plus Graphics 655 integrated GPU. It is very slow (2020 vintage mini-PC) and is specifically intended for testing on a minimal baseline platform, i.e. "if it runs here it'll run anywhere".
+
+A maximum of one job can run concurrently on this host (limited by RAM).
+
+| Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | Licenses |
+|----------|-----------------|-------|----------|----|-----|----------------|
+| debian-stable-intel | debian-stable-intel | 8 | 12 | Debian 13 | Intel Iris Plus Graphics 655 | principals-office |
+
 ### rikers
 
 This server has an Intel Xeon Scalable Gold 5320 (26 physical / 52 logical cores), 512GB of RAM, and an NVIDIA GTX 1630 GPU which is currently allocated to a non-CI VM and not available for use by CI jobs.
@@ -75,6 +85,7 @@ The available licenses are:
 * nvidia3050_51: RTX 3050 6GB GPU at PCIe bus address 0x51
 * nvidia3050_52: RTX 3050 GPU at PCIe bus address 0x52
 * nvidia3050_8a: RTX 3050 6GB GPU at PCIe bus address 0x8a
+* principals-office: Jobs running on NUC (implicitly gets the passthrough Intel iGPU)
 * rikers: Jobs running on small xcp-ng server
 * sanquentin: Jobs running on large xcp-ng server
 

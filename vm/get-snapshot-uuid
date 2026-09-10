@@ -14,6 +14,9 @@ case "$1" in
 	"debian-stable")
 		echo "89827c51-b989-1c72-c815-6669788ee3c3";;
 
+	"debian-stable-intel")
+		echo "d7df10d2-1290-8b77-b580-9c8f57e9432b";;
+
 	"fedora")
 		echo "08db3b96-b483-4e08-f165-9ba32a82fd03";;
 

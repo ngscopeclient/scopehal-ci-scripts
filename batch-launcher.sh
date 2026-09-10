@@ -45,6 +45,11 @@ JOB7=`sbatch-wrapper.sh -L macmini:1 -p macos run-task-macos job-macos.sh`
 JOB8=`sbatch-wrapper.sh -L macmini:1 -p debian-stable-aarch64 run-task job-debian.sh`
 
 ########################################################################################################################
+# Tests that run on the NUC with iGPU. This is slow and should not block other stuff b/c no artifacts
+
+sbatch-wrapper.sh -L principals-office:1 -p debian-stable-intel run-task job-debian.sh 2>&1
+
+########################################################################################################################
 # Tarball generation doesn't need much of anything, use an ubuntu no-GPU node
 
 JOB9=`sbatch-wrapper.sh -L rikers:1 -p ubuntu-lts run-task job-tarball.sh`
