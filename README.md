@@ -56,7 +56,7 @@ TODO: now that we moved the Ubuntu jobs to Rikers, do we want to assign more vCP
 | arch | arch | 8 | 32 | Arch (fully updated) | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
 | debian-oldstable | debian-oldstable | 8 | 32 | Debian 12 | NVIDIA RTX 3050 | nvidia3050_51,sanquentin |
 | debian-stable | debian-stable | 8 | 32 | Debian 13 | NVIDIA RTX 3050 | nvidia3050_8a,sanquentin |
-| fedora | fedora | 8 | 32 | Fedora 43 | none | sanquentin |
+| fedora | fedora | 8 | 32 | Fedora 44 | none | sanquentin |
 | ubuntu-oldlts | ubuntu-oldlts | 8 | 32 | Ubuntu 24.04 | NVIDIA RTX 3050 | nvidia3050_8a,sanquentin |
 | win11 | win11 | 8 | 32 | Windows 11 Pro 25H2 | NVIDIA RTX 3050 | nvidia3050_52,sanquentin |
 

@@ -45,7 +45,7 @@ scp artifacts/$UBUNTU_OLDLTS_JOB/* ci@$FILE_HOST:$OUTBASE/ubuntu-24-04-amd64/
 scp artifacts/$ARCH_JOB/* ci@$FILE_HOST:$OUTBASE/arch-amd64/
 scp artifacts/$DEBIAN_STABLE_JOB/* ci@$FILE_HOST:$OUTBASE/debian-13-amd64/
 scp artifacts/$UBUNTU_LTS_JOB/* ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/
-scp artifacts/$FEDORA_JOB/* ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/
+scp artifacts/$FEDORA_JOB/* ci@$FILE_HOST:$OUTBASE/fedora-44-amd64/
 scp artifacts/$MACOS_JOB/* ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/
 scp artifacts/$DEBIAN_AARCH64_JOB/* ci@$FILE_HOST:$OUTBASE/debian-13-aarch64/
 scp artifacts/$TARBALL_JOB/* ci@$FILE_HOST:$OUTBASE/source-tarball/
@@ -57,7 +57,7 @@ scp run-logs/slurm-$UBUNTU_OLDLTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-24-04-am
 scp run-logs/slurm-$ARCH_JOB.out ci@$FILE_HOST:$OUTBASE/arch-amd64/buildlog.txt
 scp run-logs/slurm-$DEBIAN_STABLE_JOB.out ci@$FILE_HOST:$OUTBASE/debian-13-amd64/buildlog.txt
 scp run-logs/slurm-$UBUNTU_LTS_JOB.out ci@$FILE_HOST:$OUTBASE/ubuntu-26-04-amd64/buildlog.txt
-scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-43-amd64/buildlog.txt
+scp run-logs/slurm-$FEDORA_JOB.out ci@$FILE_HOST:$OUTBASE/fedora-44-amd64/buildlog.txt
 scp run-logs/slurm-$MACOS_JOB.out ci@$FILE_HOST:$OUTBASE/macos-15-6-arm64/buildlog.txt
 scp run-logs/slurm-$DEBIAN_AARCH64_JOB.out ci@$FILE_HOST:$OUTBASE/debian-13-aarch64/buildlog.txt
 scp run-logs/slurm-$TARBALL_JOB.out ci@$FILE_HOST:$OUTBASE/source-tarball/buildlog.txt
