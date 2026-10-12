@@ -6,34 +6,34 @@ fi
 
 case "$1" in
 	"arch")
-		echo "f3a4d629-c13f-cfd5-ac20-6909c03071ac";;
+		echo "925bb1da-ae9b-1f26-3712-b173647a0b0e";;
 
 	"debian-oldstable")
-		echo "ed690f76-c3ad-5926-1877-207ad36df718";;
+		echo "d5c0386c-abfb-e755-46aa-e8ebf689165a";;
 
 	"debian-stable")
-		echo "89827c51-b989-1c72-c815-6669788ee3c3";;
+		echo "1bd5e804-0ddd-923c-6177-1a21f7b29985";;
 
 	"debian-stable-intel")
-		echo "66949144-6f54-c358-b652-a94d0fdeb22d";;
+		echo "d0bd9f31-0232-3639-919c-0cfad4871f67";;
 
 	"fedora")
-		echo "08db3b96-b483-4e08-f165-9ba32a82fd03";;
+		echo "1808f039-59c4-d971-111b-ea0917405c0f";;
 
 	"ubuntu-lts-1")
-		echo "7618fc52-fe99-25dc-bc77-70fff2599fe7";;
+		echo "57b3ec00-608c-8a40-a948-393fc55a076f";;
 
 	"ubuntu-lts-2")
-		echo "087f6229-2d91-872a-898a-ec5f1e9bc9e8";;
+		echo "43747acc-54e3-cf75-d678-f937576f6e70";;
 
 	"ubuntu-lts-3")
-		echo "7a40e91b-d199-99b7-bc24-fbb8636be1f8";;
+		echo "6d5f0d8a-4813-c4bd-d242-9b0924338dd4";;
 
 	"ubuntu-oldlts")
-		echo "9a159e20-38e3-af77-54b1-7d10f2613d10";;
+		echo "57913a2f-0427-e593-c125-47aab15eb7ff";;
 
 	"win11")
-		echo "e91c29bb-9363-9d98-6b63-54af7fd3128c";;
+		echo "da2ff1c7-e69f-0671-8cee-8cb920fb3eb7";;
 
 	*)
 		echo "Invalid node name";
