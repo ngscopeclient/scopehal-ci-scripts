@@ -20,7 +20,7 @@ A maximum of one job can run concurrently on this host (limited by RAM).
 
 | Hostname | Partition | vCPUs | RAM (GB) | OS | GPU | Licenses |
 |----------|-----------------|-------|----------|----|-----|----------------|
-| macos | macos | 8 | 8 | MacOS 15.6.1 | Apple M4 (PV) | macmini |
+| macos | macos | 8 | 12 | MacOS 27.0.1 | Apple M4 (PV) | macmini |
 | debian-stable-aarch64 | debian-stable-aarch64 | 8 | 8 | Debian 13 aarch64 | None | macmini |
 
 ### principals-office
