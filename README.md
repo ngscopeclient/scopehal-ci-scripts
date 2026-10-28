@@ -110,3 +110,25 @@ After the job completes or is canceled, SLURM calls `slurm/epilog.sh` on the orc
 ### Postprocessing
 
 After all build jobs have completed, a job runs on the "postprocess" virtual SLURM node (which executes entirely on the orchestrator VM without spawning a worker VM). This job executes `postprocess.sh` which creates public directories on the static-file download server, uploads the generated build artifacts and logs, and then deletes the local copies of them to avoid exhausting disk space on the orchestrator.
+
+## Hardware in loop platform
+
+CI tests have access to a hardware-in-loop test environment consisting of a ThunderScope, an [FPGA board](https://github.com/azonenberg/electronics-training/tree/master/oscilloscope-probing/lab/boards/demo-board) with eight low-speed signal outputs (plus two high speed differential pairs which are not currently used in the test environment), and a [4 channel reflective RF switch](https://github.com/azonenberg/misc-devboards/tree/master/quad-relay-mux) to mux the eight sources to the four oscilloscope channels.
+
+(photo TODO)
+
+The cable connections are as follows:
+
+* Switch outputs CHAN0...CHAN3 to ThunderScope channels 1...4
+* FPGA board SMA1...SMA4 to switch inputs 0A...3A
+* FPGA board PAM3_P to switch inputs 0B, PAM3_N to 1B
+* FPGA board DAC1, DAC2 to switch inputs 2B, 3B
+
+Both the FPGA board and RF switch board have USB-serial interfaces rather than Ethernet control. To enable them to be potentially used by multiple different test VMs without complex device reconfiguration, they are connected to socat servers running on a frontend VM which the test cases connect to via TCP.
+
+Similarly, the ThunderScope does not have a direct PCIe connection to the test VM; test clients connect to TS.NET via TCP sockets. As of this writing the host VM is running TS.NET 0c83e8875c476e7e50a11d4f5e78da54a74dd222 (Oct 18 2026).
+
+Network paths (these are RFC1918 addresses on the local DNS and will not resolve outside of the CI sandbox environment):
+* FPGA board SCPI: fpgadev.lab.poulsbo.antikernel.net:8000
+* RF switch board SCPI: fpgadev.lab.poulsbo.antikernel.net:8001
+* ThunderScope: fpgadev.lab.poulsbo.antikernel.net:5025 (SCPI), 5026 (waveforms)
