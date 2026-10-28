@@ -113,7 +113,9 @@ After all build jobs have completed, a job runs on the "postprocess" virtual SLU
 
 ## Hardware in loop platform
 
-CI tests have access to a hardware-in-loop test environment consisting of a ThunderScope, an [FPGA board](https://github.com/azonenberg/electronics-training/tree/master/oscilloscope-probing/lab/boards/demo-board) with eight low-speed signal outputs (plus two high speed differential pairs which are not currently used in the test environment), and a [4 channel reflective RF switch](https://github.com/azonenberg/misc-devboards/tree/master/quad-relay-mux) to mux the eight sources to the four oscilloscope channels.
+CI tests have access to a hardware-in-loop (HIL) test environment consisting of a ThunderScope, an [FPGA board](https://github.com/azonenberg/electronics-training/tree/master/oscilloscope-probing/lab/boards/demo-board) with eight low-speed signal outputs (plus two high speed differential pairs which are not currently used in the test environment), and a [4 channel reflective RF switch](https://github.com/azonenberg/misc-devboards/tree/master/quad-relay-mux) to mux the eight sources to the four oscilloscope channels.
+
+This system allows tests to run the entire acquisition pipeline, from real analog waveforms to digitized samples to filter graph processing, on actual hardware. We may expand the test pool with additional instruments at some point in the indefinite future.
 
 (photo TODO)
 
@@ -132,3 +134,5 @@ Network paths (these are RFC1918 addresses on the local DNS and will not resolve
 * FPGA board SCPI: fpgadev.lab.poulsbo.antikernel.net:8000
 * RF switch board SCPI: fpgadev.lab.poulsbo.antikernel.net:8001
 * ThunderScope: fpgadev.lab.poulsbo.antikernel.net:5025 (SCPI), 5026 (waveforms)
+
+To prevent conflicts, some means of arbitration will need to be developed so that only one test case can access the HIL environment once we start running tests on multiple platforms. As of this writing HIL tests only are enabled on the Debian 13 x86-64 runner, which prevents conflicts since only one test can run on this node at a time.
